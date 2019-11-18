@@ -1,7 +1,9 @@
-<div class="card border-0">
-    <div class="card-img-top">
+<div class="bg-transparent card border-0">
+    <div class="card-img-top row">
         {% for video in playlist.videos %}
-            {{ include('video/_video_card.html.twig', {'video':video}) }}
+            <div class="col-6">
+                {{ include('video/_video_card.html.twig', {'video':video}) }}
+            </div>
         {% endfor %}
     </div>
     <div class="card-body">

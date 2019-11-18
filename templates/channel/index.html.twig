@@ -11,9 +11,10 @@
         <div class="row">
             <div class="col">
                 <div class="channel-background mt-1">
-                        {% if channel.image is not null %}
-                            <img width="100%" src="{{ asset( [uploads_dir, '/channel/', channel.image, '.jpg']|join ) }}" alt="ad-content"> <br>
-                        {% endif %}
+                    {% if channel.image is not null %}
+                        <img width="100%" src="{{ asset( [uploads_dir, '/channel/', channel.image, '.jpg']|join ) }}"
+                             alt="channel-img"> <br>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -41,9 +42,9 @@
                         Na kanale nie ma żadnych filmów.
                     {% else %}
                         {% for video in channel.videos %}
-                                <div class="col-12 col-md-6 col-lg-6 col-xl-4">
-                                    {{ include('video/_video_card.html.twig', {'video':video}) }}
-                                </div>
+                            <div class="col-12 col-md-6 col-lg-6 col-xl-4">
+                                {{ include('video/_video_card.html.twig', {'video':video}) }}
+                            </div>
                         {% endfor %}
                     {% endif %}
                 </div>
@@ -59,13 +60,13 @@
                     {% if channel.playlists is empty %}
                         Na kanale nie ma żadnych playlist.
                     {% else %}
-                        {% for playlist in channel.playlists %}
+                        <div class="col-12">
                             <div class="row mt-3">
-                                <div class="col-12">
-                                    {{ include('playlist/_playlist_card.html.twig', {'playlist':playlist}) }}
-                                </div>
+                                {% for playlist in channel.playlists|slice(0,4) %}
+                                        {{ include('playlist/_playlist_card.html.twig', {'playlist':playlist}) }}
+                                {% endfor %}
                             </div>
-                        {% endfor %}
+                        </div>
                     {% endif %}
                 </div>
             </div>
