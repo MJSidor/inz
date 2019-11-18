@@ -19,11 +19,10 @@ class AddVideoToPlaylistFormType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $user = $this->tokenStorage->getToken()->getUser();
         $builder
             ->add('playlist', EntityType::class, [
                 'class' => Playlist::class,
-                'data' => $user->getChannel()->getPlaylists(),
+                'choices' => $this->tokenStorage->getToken()->getUser()->getChannel()->getPlaylists(),
                 'choice_label' => 'title',
                 'required' => true,
                 'label' => 'Playlista'
